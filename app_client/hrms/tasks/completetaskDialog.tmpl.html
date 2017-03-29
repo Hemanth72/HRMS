@@ -1,0 +1,15 @@
+<md-dialog>
+	<md-dialog-content>
+		<div class="md-dialog-content" ng-if="!ctrld.params.completed">
+			    Are you sure to mark this task as complete and notify your manager?
+		</div>
+		<div class="md-dialog-content" ng-if="ctrld.params.completed">
+			    Are you sure to mark this task as incomplete and re-assign it to your employee?
+		</div>
+	</md-dialog-content>
+	<md-dialog-actions layout="row"> 
+		<md-button ng-click="ctrld.saveTask('taskComplete',ctrld.params)">Yes</md-button>
+		<md-button ng-if="!ctrld.params.completed" ng-click="ctrld.sameecord('incomplete')" class="md-primary">No</md-button>
+		<md-button ng-if="ctrld.params.completed" ng-click="ctrld.sameecord('complete')" class="md-primary">No</md-button>
+	</md-dialog-actions>
+</md-dialog>		

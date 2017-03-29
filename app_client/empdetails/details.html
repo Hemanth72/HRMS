@@ -1,0 +1,251 @@
+
+
+<!--<p>Details</p>-->
+<div style="width:100%;height:100%;background:white">
+
+<div style="width:100%;padding:5px;background:white">
+<md-list-item>
+<!--<ng-avatar initials="{{initial}}" round-shape="true" bg-color="#3333cc" text-color="white" width="40"></ng-avatar>-->
+<h1 style="color:black">{{employeeinfo[0].name}}</h1>
+</md-list-item>
+</div>
+
+ <md-tabs md-border-bottom style="width:100%;height:100%;min-height: 100%;">
+ <md-tab label="Profile">
+        <md-content class="md-padding" style="background: #f2f2f4">
+         <md-card style="width: 99%;padding: 30px;">
+         <h3 style="padding-bottom: 10px;">Employee Details</h3>
+         <div layout-gt-sm="row" style="height:80px">
+          <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">First Name</label>
+            <input ng-model="fname" name="fname" ng-readonly="true" required>
+          </md-input-container>
+            <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Last Name</label>
+            <input ng-model="lname" name="lname" ng-readonly="true" required>
+          </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row" style="height:80px">
+          <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Email</label>
+            <input ng-model="email" name="email" ng-readonly="true" required>
+          </md-input-container>
+            <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">Designation</label>
+            <input ng-model="job_title" name="job_title" ng-readonly="true" required>
+          </md-input-container>
+        </div>
+ 
+ <div layout-gt-sm="row" style="height:80px">
+          <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Joining Date</label>
+            <input ng-model="joining_date" name="joining_date" ng-readonly="true" required>
+          </md-input-container>
+            <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">Reporting To</label>
+           <!-- <input ng-model="reporting_to" name="reporting_to" ng-readonly="true" required>-->
+             <md-select name="reporting_to" ng-model="reporting_to" placeholder="Reporting Manager" required>
+              <md-option value="NA">NA</md-option>
+         <md-option ng-repeat="s in reportingManagers" value="{{s.email}}">
+            {{s.name}}
+        </md-option>
+          </md-select>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row" style="height:80px">
+          <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Employee Type</label>
+            <!--<input ng-model="employee_type" name="employee_type" ng-readonly="true" required>-->
+            <md-select name="employee_type" ng-model="employee_type" placeholder="Employee Type" required>
+             <md-option value="NA">NA</md-option>
+          <md-option value="Contractor">Contractor</md-option>
+          <md-option value="Full Time">Full Time</md-option>
+          <md-option value="Intern">Intern</md-option>
+           <md-option value="Part Time">Part Time</md-option>
+          </md-select>
+          </md-input-container>
+            <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">Employee Status</label>
+            <input ng-model="employee_status" name="employee_status" ng-readonly="true" required>
+          </md-input-container>
+        </div>
+        <div style="margin-bottom: 28px;">
+        <label style="font-size: 13px;font-weight: 700;color: rgba(0,0,0,0.55);">Bio</label>
+        <trix-editor ng-model-options="{ updateOn: 'blur' }" spellcheck="false" class="trix-content" ng-model="trix" angular-trix trix-initialize="trixInitialize(e, editor);" trix-change="trixChange(e, editor);" trix-selection-change="trixSelectionChange(e, editor);" trix-focus="trixFocus(e, editor);" trix-blur="trixBlur(e, editor);" trix-file-accept="trixFileAccept(e, editor);" trix-attachment-add="trixAttachmentAdd(e, editor);" trix-attachment-remove="trixAttachmentRemove(e, editor);"></trix-editor>
+          </div>
+          <div layout-gt-sm="row">
+          <md-input-container flex-gt-sm>
+         <label style="font-size: 16px;font-weight: 700;color: rgba(0,0,0,0.65)">Skill Set</label>
+        <md-chips ng-model="selectedSkills" md-autocomplete-snap
+              md-transform-chip="transformChip($chip)"
+              md-require-match="autocompleteDemoRequireMatch">
+      <md-autocomplete
+          md-selected-item="selectedItem"
+          md-search-text="searchText"
+          md-items="item in querySearch(searchText)"
+          md-item-text="item.name"
+          placeholder="Search for skills">
+        <span md-highlight-text="searchText">{{item.name}}</span>
+      </md-autocomplete>
+      <md-chip-template>
+        <span>
+          <strong>{{$chip.name}}</strong>
+        </span>
+      </md-chip-template>
+    </md-chips>
+ </md-input-container>
+        </div>
+        <md-button class="md-raised md-primary" ng-click="saveProfile()" style="width: 10%;">Save</md-button>
+         </md-card>
+        </md-content>
+      </md-tab>
+      <md-tab label="Personal Information">
+        <md-content class="md-padding" style="background: #f2f2f4">
+          <md-card style="width: 99%;padding: 30px;">
+         <h3 style="padding-bottom: 10px;">Personal Details</h3>
+          <div layout-gt-sm="row" style="height:80px">
+          <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+          <label style="font-size: 16px;font-weight: 700;margin-right:28px">Marital Status</label>
+            <md-datepicker onkeydown="return false" style="float: left;margin-left: -15px;" name="dob" ng-model="dob" md-placeholder="Birth Date"></md-datepicker>
+          </md-input-container>
+            <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">Marital Status</label>
+         <md-select name="marital_s" ng-model="marital_s" placeholder="Marital Status">
+          <md-option value="Married">Married</md-option>
+          <md-option value="Single">Single</md-option>
+          <md-option value="Partnership">Partnership</md-option>
+           <md-option value="Widowed">Widowed</md-option>
+           <md-option value="Divorced">Divorced</md-option>
+          </md-select>
+          </md-input-container>
+        </div>
+         <div layout-gt-sm="row" style="height:80px">
+          <md-input-container style="width: 25%;max-width: 25%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Mobile Number</label>
+            <input ng-model="mobile" name="mobile" type="number" ng-pattern="/^[7-9][0-9]{9}$/">
+          </md-input-container>
+            <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Landline</label>
+            <input ng-model="phone" name="phone" type="number">
+          </md-input-container>
+        </div>
+         <div layout-gt-sm="row" style="height:80px">
+         <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Gender</label>
+            <!--<input ng-model="employee_type" name="employee_type" ng-readonly="true" required>-->
+            <md-select name="gender" ng-model="gender" placeholder="Gender">
+          <md-option value="Male">Male</md-option>
+           <md-option value="Female">Female</md-option>
+          </md-select>
+          </md-input-container>
+          <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Address</label>
+            <input ng-model="address" name="address">
+          </md-input-container>
+        </div>
+         <div layout-gt-sm="row" style="height:80px">
+         
+            <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">City</label>
+            <input ng-model="city" name="city">
+          </md-input-container>
+          <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">State</label>
+            <input ng-model="state" name="state">
+          </md-input-container>
+           
+        </div>
+         <div layout-gt-sm="row" style="height:80px">
+          <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">Postal Code</label>
+            <input ng-model="postal_code" name="postal_code" type="number">
+          </md-input-container>
+            <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Country</label>
+            <input ng-model="country" name="country">
+          </md-input-container>
+        </div>
+         <md-button class="md-raised md-primary" ng-click="saveProfile()" style="width: 10%;">Save</md-button>
+         </md-card>
+        </md-content>
+      </md-tab>
+      <md-tab label="Emergency Contact">
+        <md-content class="md-padding" style="background: #f2f2f4">
+         <md-card style="width: 99%;padding: 30px;">
+         <h3 style="padding-bottom: 10px;">Emergency Contact</h3>
+          <div layout-gt-sm="row" style="height:80px">
+            <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">First Name</label>
+            <input ng-model="emergency_fname" name="emergency_fname">
+          </md-input-container>
+          <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Last Name</label>
+            <input ng-model="emergency_lname" name="emergency_lname">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row" style="height:80px">
+            <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Relationship</label>
+            <input ng-model="emergency_relation" name="emergency_relation">
+          </md-input-container>
+          <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Mobile Number</label>
+            <input ng-model="emergency_mbno" name="emergency_mbno" type="number">
+          </md-input-container>
+        </div>
+         <md-button class="md-raised md-primary" ng-click="saveProfile()" style="width: 10%;">Save</md-button>
+          </md-card>
+        </md-content>
+      </md-tab>
+      <md-tab label="Bank Account Information">
+        <md-content class="md-padding" style="background: #f2f2f4">
+         <md-card style="width: 99%;padding: 30px;">
+         <h3 style="padding-bottom: 10px;">Account Information</h3>
+          <div layout-gt-sm="row" style="height:80px">
+            <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700;">Bank Name</label>
+            <input ng-model="bank_name" name="bank_name">
+          </md-input-container>
+          <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Account Type</label>
+            <!--<input ng-model="employee_type" name="employee_type" ng-readonly="true" required>-->
+            <md-select name="acc_type" ng-model="acc_type" placeholder="Account Type">
+          <md-option value="Current">Current</md-option>
+           <md-option value="Saving">Saving</md-option>
+            <md-option value="Other">Other</md-option>
+          </md-select>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row" style="height:80px">
+            <md-input-container style="width: 25%;max-width: 25%;" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">Account Number</label>
+            <input ng-model="acc_number" name="acc_number" type="number">
+          </md-input-container>
+          <md-input-container style="width: 25%;max-width: 25%;margin-left:5%" flex-gt-sm>
+            <label style="font-size: 16px;font-weight: 700">IFSC Code</label>
+            <input ng-model="ifsc_code" name="ifsc_code">
+          </md-input-container>
+        </div>
+         <md-button class="md-raised md-primary" ng-click="saveProfile()" style="width: 10%;">Save</md-button>
+          </md-card>
+        </md-content>
+      </md-tab>
+      <md-tab label="Project Information">
+       <md-content class="md-padding" style="background: #f2f2f4">
+       <timeline>
+    <timeline-event ng-repeat="event in events" side="alternate" ng-click="clickEvent()">
+      <timeline-badge class="{{event.badgeClass}}">
+        <p style="font-size: 14px; margin: 0px;padding: 0px;">2014</p>
+      </timeline-badge>
+      <timeline-panel class="{{event.badgeClass}}">
+        <timeline-heading>
+          <h4>{{event.title}}</h4>
+        </timeline-heading>
+      </timeline-panel>
+    </timeline-event>
+  </timeline>
+        </md-content>
+      </md-tab>
+  </md-tabs>
+</div>

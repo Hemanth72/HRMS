@@ -1,0 +1,92 @@
+<md-content role="dialog" aria-label="Edit" layout="column" layout-align="center center" layout-fill style="max-height:75%; overflow:auto" flex>
+ <form name="myForm" flex-gt-xs>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>On Board Details</h2>
+    </div>
+  </md-toolbar>
+
+  <div class="demo-dialog-content md-padding">
+    <div layout-gt-sm="row" style="height:80px">
+          <md-input-container flex-gt-sm>
+            <label>First Name</label>
+            <input ng-model="ctrl.fname" name="fname" required>
+             <div ng-messages="myForm.fname.$error" role="alert">
+              <div ng-message="required" class="my-message">First Name required.</div>
+             </div>
+          </md-input-container>
+            <md-input-container flex-gt-sm>
+            <label>Last Name</label>
+            <input ng-model="ctrl.lname" name="lname" required>
+             <div ng-messages="myForm.lname.$error" role="alert">
+              <div ng-message="required" class="my-message">Last Name required.</div>
+             </div>
+          </md-input-container>
+        </div>
+  <div layout-gt-sm="row" style="height:80px">
+          <md-input-container flex-gt-sm style="">
+            <label>Job Title</label>
+            <input ng-model="ctrl.jobtitle" name="jobtitle" required>
+             <div ng-messages="myForm.jobtitle.$error" role="alert">
+              <div ng-message="required" class="my-message">Job Title required.</div>
+             </div>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm style="margin-left: -10px;float:left">
+
+        <md-datepicker style="float: left;" name="joindate" ng-model="ctrl.joindate" md-placeholder="Joining" required=""></md-datepicker>
+        <div ng-messages="myForm.joindate.$error" role="alert">
+              <div ng-message="required" class="my-message">Date required.</div>
+             </div>
+     </md-input-container>
+           
+          </md-input-container>
+        </div>
+     <div layout-gt-sm="row" style="height:80px">
+          <md-input-container  flex-gt-sm>
+            <label>Reporting Manager</label>
+            <md-select name="empmanager" ng-model="ctrl.empmanager" placeholder="Reporting Manager" required>
+         <md-option ng-repeat="s in ctrl.reportingManagers" value="{{s.email}}">
+            {{s.name}}
+        </md-option>
+          </md-select>
+          <div ng-messages="myForm.empmanager.$error" role="alert">
+              <div ng-message="required" class="my-message">Reporting Manager required.</div>
+             </div>
+          </md-input-container>
+          <md-input-container  flex-gt-sm>
+            <label>Employee Type</label>
+            <md-select name="emptype" ng-model="ctrl.emptype" placeholder="Employee Type" required>
+          <md-option value="Contractor">Contractor</md-option>
+          <md-option value="Full Time">Full Time</md-option>
+          <md-option value="Intern">Intern</md-option>
+           <md-option value="Part Time">Part Time</md-option>
+          </md-select>
+          <div ng-messages="myForm.emptype.$error" role="alert">
+              <div ng-message="required" class="my-message">Employee Type required.</div>
+             </div>
+          </md-input-container>
+        </div>
+         <div layout-gt-sm="row" style="height:80px">
+         <md-input-container flex-gt-sm>
+            <label>Email Address</label>
+            <input ng-model="ctrl.email" name="email" type="email" required>
+             <div ng-messages="myForm.email.$error" role="alert">
+              <div ng-message="required" class="my-message">Email required.</div>
+             </div>
+          </md-input-container>
+          </div>
+         <p style="margin: 0px;color:#dd2c00" ng-if="ctrl.errorform">Please enter required details!!</p>
+         <p style="margin: 0px;color:#dd2c00" ng-if="ctrl.dupemail">Email address already exists!!</p>   
+  </div>
+
+  <div layout="row" class="demo-dialog-button">
+    <md-button md-autofocus flex class="md-primary" ng-click="ctrl.closeDialog()">
+      Cancel
+    </md-button>
+    <md-button md-autofocus flex class="md-primary" ng-click="ctrl.saveBoardData(myForm)">
+      On Board
+    </md-button>
+  </div>
+
+ </form>
+  </md-content>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html ng-app="HRMS">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HRMS</title>
+  
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.0/angular-material.min.css" />
+  <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+  
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css">
+
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.jqueryui.min.css">
+
+ <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.css">
+
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.material.min.css">-->
+<link rel="stylesheet" href="lib/angular-timeline/dist/angular-timeline.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+   <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.jqueryui.min.js"></script>
+     <script src="lib/moment/min/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/date-eu.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
+<script src="lib/angular/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+<script src="lib/angular-avatar/dist/angular-avatar.js"></script>
+ <script src="lib/angular-trix/dist/angular-trix.min.js"></script>
+  <script src="lib/angular-datatables/demo/src/archives/dist/angular-datatables.js"></script>
+<script src="lib/angular-timeline/dist/angular-timeline.js"></script>
+ <script src="lib/angular/angular-route.min.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-messages.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+ 
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.0/plugins/buttons/angular-datatables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.15/angular-filter.min.js"></script>
+<!--<script src="https://cdn.datatables.net/1.10.13/js/dataTables.material.min.js"></script>-->
+ <script src="lib/angular-breadcrumbs/dist/ng-breadcrumbs.min.js"></script>
+<!-- socket -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+
+
+  <script src="app.js"></script>
+  <script src="home/home.controller.js"></script>
+   <script src="hrms/hrms.controller.js"></script>
+<script src="employees/employees.controller.js"></script>
+<script src="empdetails/details.controller.js"></script>
+<script src="common/Services/SharedService.js"></script>
+<script src="hrms/tasks/tasks.controller.js"></script>
+
+<script src="training/training.controller.js"></script>
+  <script src="/lib/ng-file-upload/dist/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
+<script src="/lib/ng-file-upload/dist/ng-file-upload.min.js"></script>
+</head>
+
+<body class="loaded">
+  <div class="page-cont">
+  <div id="overlay">
+  </div>
+  <div id="shelf">
+  <div class="logo">
+  <a href="#"> <img src="img/hr.jpg"> </a>
+  </div>
+  <nav class="workspace-menu">
+  <ul class="nav nav-apps">
+  <li class="active">
+  <a ui-sref="home"  style="text-decoration:none;"><i class="fa fa-home"></i><span class="app-name">Home</span></a>
+  </li>
+  <li>
+  <a href="#/projects"  style="text-decoration:none;"><i class="fa fa-book"></i><span class="app-name">Projects</span></a>
+  </li>
+  <li>
+  <a href="#/crm" style="text-decoration:none;"><i class="fa fa-bullseye"></i><span class="app-name">CRM</span></a>
+  </li>
+  <li>
+  <a ui-sref="hrms" style="text-decoration:none;"><i class="fa fa-users"></i><span class="app-name">HRMS</span></a>
+  </li>
+  </ul>
+  </nav>
+  </div>
+<div id="app-container">
+<!--<div class="app-header" style="height: 45px;">
+<div class="navbar-header" style="height: 45px;">
+<nav class="primary-nav" style="height: 45px;padding-left: 20px">
+
+<ul class="nav navbar-nav" style="height: 45px;margin-top:0px">
+<li style="height: 45px">
+   <a href="#/" style="text-decoration:none;" class="sf-with-ul1"><i style="font-size:16px;margin-right: 10px;" class="fa fa-users"></i></a>
+  </li>
+<li style="height: 45px;margin-left: -5px;">
+  <a href="#/overview" style="text-decoration:none;">Overview</a>
+  </li>
+  <li style="height: 45px">
+  <a href="#/timeoffpolicy" style="text-decoration:none;">Time Off Policy</a>
+  </li>
+  <li style="height: 45px">
+  <a href="#/employees" style="text-decoration:none;">Employees</a>
+  </li>
+  <li style="height: 45px">
+  <a href="#/tasks" style="text-decoration:none;">Tasks</a>
+  </li>
+  <li style="height: 45px">
+  <a href="#/checkin" style="text-decoration:none;">Automatic Check-ins</a>
+  </li>
+  <li style="height: 45px">
+  <a href="#/you" style="text-decoration:none;">You</a>
+  </li>
+
+</ul>
+</nav>
+
+<nav class="secondary-nav" style="height: 45px;margin-right: -95px;">
+<ul class="nav navbar-nav" style="height: 45px;margin-top:0px">
+<li style="height: 45px">
+  <a href="#/" style="text-decoration:none;"><i style="font-size:16px;margin-right: 10px;" class="fa fa-play-circle"></i></a>
+  </li>
+  <li style="height: 45px">
+  <a href="#/" style="text-decoration:none;"><i style="font-size:16px;margin-right: 10px;" class="fa fa-question-circle"></i></a>
+  </li>
+  <li style="height: 45px">
+  <a href="#/" style="text-decoration:none;"><i style="font-size:16px;margin-right: 10px;" class="fa fa-bell-o"></i></a>
+  </li>
+</ul>
+</nav>
+</div>
+</div>-->
+<div ui-view style="height:100%">
+</div>
+  </div>
+  </div>
+  <script>
+  $('li').on('click', function(){
+    debugger;
+   $('li').removeClass('active');
+   $(this).addClass('active');
+})
+  </script>
+</body>
+</html>

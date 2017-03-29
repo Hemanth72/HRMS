@@ -1,0 +1,92 @@
+
+<!--<h2 id="page-title" style="margin-top:0px">Employees</h2>-->
+<div class="app-header">
+<div class="toolbar-header with-chrome">
+<div hide-sm hide-xs class="page-title pull-left sep-right">
+Adnate
+</div>
+<div class="pull-left ">
+<span class="group-label">
+Sort By
+</span>
+<div ng-class="class">
+<button class="btn btn-default btn-sm dropdown-toggle" type="button" ng-click="changeClass()" aria-expanded="val">
+ {{btndesc}}
+ <i class="fa fa-angle-down"></i>
+</button>
+<ul class="dropdown-menu">
+<li>
+<a href="" ng-click="changeval('Name')" style="text-decoration:none;">Name</a>
+</li>
+<li>
+<a href="" ng-click="changeval('Date Of Joining')" style="text-decoration:none;">Date Of Joining</a>
+</li>
+<li>
+<a href="" ng-click="changeval('Job Title')" style="text-decoration:none;">Job Title</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="form-search pull-left sep-left">
+<div class="input-group">
+<div class="input-group-addon">
+<i style="font-size:16px" class="fa fa-search"></i>
+</div>
+<input type="text" class="form-control" ng-model="query" placeholder="search">
+</div>
+</div>
+<div class="btn-group pull-right btn-group-icon" style="margin-top:5px">
+<button style="border: none;background-color: transparent;" ng-click="gridclass()">
+	<i class="fa fa-th"></i>
+</button>
+<button style="border: none;background-color: transparent;" ng-click="listclass()">
+	<i class="fa fa-th-list"></i>
+</button>
+<button style="border: none;background-color: transparent;" ng-click="addEmployee()">
+	<i class="fa fa-plus"></i>
+</button>
+</div>
+</div>
+</div>
+<div id="container" class="page" style="height:auto;min-height:100%;background:#f2f2f4;width:100%">
+<div ng-repeat="(key, value) in users | filter:query | orderBy: orderList | groupBy: groupList" ng-if="grid">
+<md-list-item>
+        <p style="color:black;font-size: 15px;font-weight: 500;margin-left:15px">{{redefine(key)}}</p>
+         </md-list-item>
+        <md-divider ></md-divider>
+<div class='md-padding' layout="row" layout-wrap>
+    <md-card style="width: 350px" ng-repeat="user in value">
+      <md-card-content style="display:table-row;padding: 10px;">
+     <div class="row" style="display: -webkit-inline-box;padding-left:20px">
+      <ng-avatar initials="{{splitfun(user.name)}}" round-shape="true" bg-color="#3333cc" text-color="white" width="40"></ng-avatar>
+      
+        <p style="margin-left:10px;font-size: 16px;font-weight: 700;padding: x;margin: 5px;margin-left:15px;height: 20px;">{{user.name}}</p>
+       </div>
+        <p style="padding-left:60px;font-size: 15px;font-weight: 500;margin-top: -12px;">{{user.job_title}}</p>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
+  <md-list style="padding:0px;padding-top:18px" flex ng-if="list">
+  
+        <md-divider ></md-divider>
+        <div ng-repeat="(key, value) in users | filter:query | orderBy: orderList | groupBy: groupList">
+        <md-list-item>
+        <p style="color:black;font-size: 15px;font-weight: 500;margin-left:15px">{{redefine(key)}}</p>
+         </md-list-item>
+        <md-divider ></md-divider>
+        <md-list-item class="md-2-line" ng-repeat="user in value" ng-click="getUserDetails(user)">
+         <md-divider ></md-divider>
+          <ng-avatar initials="{{splitfun(user.name)}}" round-shape="true" bg-color="#3333cc" text-color="white" width="40"></ng-avatar>
+          <div class="md-list-item-text" style="margin-left:15px">
+            <p style="color:black;font-size: 16px;font-weight: 700">{{user.name}}</p>
+            <div class="row" style="display: block;margin-left:0px;width: 100%">
+            <p style="color:black;display: table-cell;float: left;font-size: 15px;font-weight: 500">{{user.job_title}}</p>
+            <p style="color:black;display: table-cell;float: right;font-size: 15px;font-weight: 500">{{user.joining_date|friendlyDate1}}</p>
+            </div>
+          </div>
+         
+        </md-list-item>
+        </div>
+  </md-list>
+</div>

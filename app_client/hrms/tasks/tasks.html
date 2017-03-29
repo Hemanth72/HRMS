@@ -1,0 +1,223 @@
+<div layout="column" style="width:100%" ng-cloak>
+
+  <div id="page-content-wrapper">
+    <div id="page-content" >
+<!-- <h2 id="page-title">Dashboard</h2>
+ -->
+      <md-content >
+        <md-toolbar style="background: white;">
+          <div class="md-toolbar-tools custom-toolbar" layout="row">
+            <div hide-sm hide-xs flex class="page-heading sep-right" style="padding:.6% 3%;">
+              <div >Tasks</div>
+            </div>
+            
+           <div class="pull-left" flex style="padding:.6% 3%;"> 
+              <div class="group-label">Show</div>
+              <div class="btn-group-task">
+                <button data-toggle="dropdown" ng-click="" style="" class="btn btn-default-task" >Anyone
+                  <span style="padding-left:5px;"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+
+                </button>
+              <!--   <ul><li></li></ul>  -->
+
+              </div>
+            </div>
+          
+            <div class="pull-right" flex ng-if="!showSearchBox">
+          <!--   <div > -->
+           <!--  <md-button aria-label="Search"  ng-click="toggleSearch()" class="md-icon-button md-raised"  > -->
+               <button style="border: none;background-color: transparent;font-size: 14px;padding-top:12px;" ng-click="toggleSearch()"  aria-hidden="true">
+                <i class="fa fa-search"></i>
+              </button>
+            <!--  -->
+             	<!-- <md-button class="md-icon-button md-raised" style="/*background-color:#2581ce;*/" > -->
+              <button style="border: none;background-color: transparent;font-size: 14px;padding-top:12px;" ng-click="addTasks('add')" ng-if="!addCard" aria-hidden="true">
+                <i class="fa fa-plus"></i>
+              </button>
+            	<!-- <i class="material-icons" style="padding-top:0px; ">add</i>-->
+            		<!-- <span flex hide-sm hide-xs  style="padding-right: 2px;">Add Task</span> -->
+            <!-- 	</md-button> -->
+              </div>
+              <div class="pull-right" flex="33" ng-if="showSearchBox" style="margin-right: 20px;">
+                <!-- <div ng-if="!showSearchBox">
+                 -->  <md-input-container  flex="66" style="padding:5px;margin:0px;height:40px;float:left;position:static;">
+                 <!--    <label>&nbsp;</label> -->
+                    <input ng-model="$parent.search_text1" md-placeholder="enter search" flex style="color:#666;font-size: 14px;"/>
+                  </md-input-container>
+                <button style="border: none;background-color: transparent;font-size: 14px;padding-top:12px;float:right;position:absolute;outline:none;" ng-click="toggleSearch()"  aria-label="Close" >
+                <i class="fa fa-close"></i>
+              </button>
+                  <!--   <md-icon ng-click="toggleSearch()"  aria-label="Close"   style="color:#333;height:40px;
+                    float:right;position:absolute;margin-top:10px;outline:none;">close</md-icon>
+                  -->
+            
+             <!--  <md-button class="md-icon-button md-raised" style="/*background-color:#2581ce;*/" ng-click="addTasks('add')" ng-if="!addCard">
+                 <i class="fa fa-plus"  aria-hidden="true"></i> <i class="material-icons" style="padding-top:0px; ">add</i>
+                <!- <span flex hide-sm hide-xs  style="padding-right: 2px;">Add Task</span>
+              </md-button> --> 
+              </div>
+            </div>
+          </div>
+        </md-toolbar>
+      </md-content><!-- 
+<p ng-click="getEmployees()">aaaaa</p> -->
+      <md-content flex layout-padding style="background-color: #f2f2f4">
+        <div flex layout="column" layout-align="top center">
+          <div flex-xs layout="column" style="width:100%">
+	          <md-card ng-if="addCard" >
+	  	        <md-card-content>
+	  		        <div>
+	  			        <h3 ><span ng-if="add">Add</span><span ng-if="edit">Edit</span><span> Task</span></h3>
+	  		        </div>
+          		  <form novalidate="" role="form" name="taskAddForm" ng-submit="saveTask();" class="ng-pristine ng-invalid ng-invalid-required ng-valid-date">
+                  <div class="row"> 
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group"> 
+                            <md-input-container  style="margin: 10px 0px 0px 0px;padding:0px;" flex-gt-sm="" class="blockOnly" class="flex-gt-sm md-input-has-value">
+                              <label style="font-size: 14px;font-weight: 200;" class="md-required">Title</label>
+                              <input ng-model="addTask.title" name="title" ng-readonly="edit" required="" class="ng-pristine ng-untouched md-input ng-valid ng-valid-required"  style=""><!-- <div class="md-errors-spacer"></div>
+ -->                            </md-input-container>
+
+  
+                           
+          		            </div>
+                      
+                          <div class="row">
+                            <div class="col-md-6"> 
+                              <div class="form-group"> 
+
+                                <md-input-container style="margin: 10px 0px 0px 0px;padding:0px;" class="blockOnly" flex-gt-sm="" class="flex-gt-sm md-input-has-value">
+                                  <label style="font-size: 14px;font-weight: 200;" class="md-required">Assigned To</label>
+                                  <md-select name="assigned_to" class="bigPlaceholder"  ng-model="addTask.assigned_to" md-placeholder="Assigned To"   required ng-init="getEmployees()">
+                                   
+                                   <md-option ng-disabled="edit" ng-repeat="employee in employees | orderBy:'name' " value="{{employee.name}}">
+                                    {{employee.name}}
+                                   </md-option>
+                                  </md-select>
+                                </md-input-container>
+
+                                <!-- <label>Assigned To<span class="text-danger">*</span></label> -->
+                              
+           <!-- <input ng-model="reporting_to" name="reporting_to" ng-readonly="true" required>-->                      
+                              </div> 
+                            </div> 
+                            <div class="col-md-6"> 
+                              <div class="form-group show-label open has-datepicker datepicker-default"> 
+
+                                <md-input-container style="margin: 10px 0px 0px 0px;padding:0px;" class="blockOnly" flex-gt-sm="" class="flex-gt-md md-input-has-value">
+                                   <label style="font-size: 14px;font-weight: 200;" class="md-required">Due Date</label> 
+                                  <md-datepicker style="float:left;" class="datetask"  ng-model="addTask.due_date"  required md-open-on-focus></md-datepicker>
+
+                                </md-input-container>
+
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group show-label"> 
+                           <md-input-container style="margin: 10px 0px 0px 0px;padding:0px;" class="blockOnly" flex-gt-sm="" class="flex-gt-sm md-input-has-value">
+                            <label style="font-size: 14px;font-weight: 200;">Description</label> 
+                            <textarea ng-model="addTask.description" style="max-height:110px;" md-select-on-focus></textarea>
+                           <!--  <textarea rows="5"></textarea> -->
+                           </md-input-container>
+                          </div> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group submit"> 
+                 
+                      <md-button ng-if="add" class="md-raised md-primary ladda-button" style="float:left;" ng-disabled="taskAddForm.$invalid" ng-click="saveTask('add',addTask)" ladda-button="taskAddLoading" data-style="zoom-in" disabled="disabled">
+                        <span class="">Submit</span>
+                        <span class="ladda-spinner"></span>
+                      </md-button>
+                
+                      <md-button ng-if="edit" class="md-raised md-primary ladda-button" style="float:left;" ng-disabled="taskAddForm.$invalid" ng-click="saveTask('edit',addTask)" ladda-button="taskAddLoading" data-style="zoom-in" disabled="disabled">
+                        <span class="">Submit</span>
+                        <span class="ladda-spinner"></span>
+                      </md-button>
+                 
+                    <md-button class="md-raised ladda-button" style="border-radius: 4px;" ng-click="closeAdd()">Cancel</md-button>
+                  </div>
+                </form>
+		          </md-card-content>
+	          </md-card>
+          </div>
+          
+          <div flex-xs layout="column" style="width:100%">
+            <md-card >
+              <!-- <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline"></span>
+                  <span class="md-subhead"></span>
+                </md-card-title-text>
+                <md-card-title-media>
+                   <div class="md-media-lg card-media"></div>
+                </md-card-title-media>
+              </md-card-title>
+               -->
+              <md-card-content class="cardtoppad">
+                <div class="table-frame" style="overflow-x: auto;">
+                  <table style="width:100%;" ng-init="getTasks()"> 
+                  <tbody>
+                    <tr>
+                      <td style="width:15px;"></td>
+                      <td style="">TASKS</td>
+                      <td>ASSIGNED TO</td>
+                      <td>DUE</td>
+                      <td>CREATED BY</td>
+                      <td></td>
+                      <td></td>
+                      
+                    </tr>
+                  
+                    <tr ng-repeat="data in tasks  | filter:search_text1 | filter:{completed:false} | orderBy:'-last_modified'" ng-class="{}" >
+
+                      <td style="width:15px;" ><input type="checkbox" ng-click="taskCompleted(data)" /></td>
+                      <td style="font-size:14px;font-weight:700;outline: none;" class="demo-menu-open-button" ng-click="descriptionbox(data)"> {{data.title}}</td>
+                      <td>{{data.assigned_to}}</td>
+                      <td>{{data.due_date | date}}</td>
+                      <td>{{data.created_by}}</td>
+                      <td><i class="material-icons" style="font-size: 20px;outline:none" ng-click="addTasks('edit', data)" ng-if="data.created_by==logged_user">mode_edit</i></td>
+                      <td><i class="material-icons" ng-click="deletebox(data)" style="font-size: 20px;outline:none" ng-if="data.created_by==logged_user">highlight_off</i></td>
+
+                    </tr>
+                   
+
+                    </tbody>
+
+                  </table><br>
+                  <div ng-click="showCompletedTasks=!showCompletedTasks" style="outline:none;">
+                    <a class="toggleTaskStatus" ng-if="!showCompletedTasks">View Completed tasks</a>
+                    <a class="toggleTaskStatus" ng-if="showCompletedTasks">Hide</a>
+                  </div>
+                 <table style="width:100%;" ng-if="showCompletedTasks"> 
+                  
+                    <tr ng-repeat="data in tasks | filter:{completed:true } | filter:{created_by:logged_user} | orderBy:'-last_modified'">
+
+                      <td style="width:15px;"><input type="checkbox" class="checkbox1" ng-click="taskCompleted(data)" checked="checked"></td>
+                      <td style="font-size:14px;font-weight:700;width:25%;"><strike>{{data.title}}<strike></td>
+                      <td><strike>{{data.description}}<strike></td>
+                         <!--    <td>{{data.created_by}}</td> -->
+                    <!--   <td><i class="material-icons" style="font-size: 20px;outline:none" ng-click="addTasks('edit', data)" ng-if="data.created_by=logged_user">mode_edit</i></td>
+                      <td><i class="material-icons" ng-click="deletebox(data)" style="font-size: 20px;outline:none" ng-if="1">highlight_off</i></td> -->
+
+                    </tr>
+                  </table>
+                </div>
+              </md-card-content>
+          <!--<md-card-actions layout="row" layout-align="end center">
+                   
+              </md-card-actions>
+           -->  
+            </md-card>
+          </div>
+        </div>
+      </md-content>
+    </div>
+  </div>
+</div>

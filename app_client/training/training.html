@@ -1,0 +1,83 @@
+<div layout="column" style="width:100%" ng-cloak>
+
+  <div id="page-content-wrapper">
+    <div id="page-content" >
+<!-- <h2 id="page-title">Dashboard</h2>
+ -->
+      <md-content >
+ <md-toolbar style="background: white;">
+          <div class="md-toolbar-tools custom-toolbar" layout="row">
+            <div hide-sm hide-xs flex class="page-heading sep-right" style="padding:.6% 3%;">
+              <div >Training</div>
+            </div>
+            
+           <div class="pull-left" flex style="padding:.6% 3%;"> 
+              <div class="group-label">Show</div>
+              <div class="btn-group-task">
+                <button data-toggle="dropdown" ng-click="" style="" class="btn btn-default-task" >Anyone
+                  <span style="padding-left:5px;"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+
+                </button>
+              <!--   <ul><li></li></ul>  -->
+
+              </div>
+            </div>
+          
+            <div class="pull-right" flex ng-if="!showSearchBox">
+          <!--   <div > -->
+           <!--  <md-button aria-label="Search"  ng-click="toggleSearch()" class="md-icon-button md-raised"  > -->
+               <button style="border: none;background-color: transparent;font-size: 14px;padding-top:12px;" ng-click="toggleSearch()"  aria-hidden="true">
+                <i class="fa fa-search"></i>
+              </button>
+            <!--  -->
+             	<!-- <md-button class="md-icon-button md-raised" style="/*background-color:#2581ce;*/" > -->
+              <button ng-if="loggeduser_role==admin" style="border: none;background-color: transparent;font-size: 14px;padding-top:12px;" ng-click="" ng-if="!addCard" aria-label="Manage Training">
+                <a ui-sref="hrms.managetraining" style="text-decoration:none;"><i class="fa fa-plus"></i></a>
+              </button>
+
+  
+            	<!-- <i class="material-icons" style="padding-top:0px; ">add</i>-->
+            		<!-- <span flex hide-sm hide-xs  style="padding-right: 2px;">Add Task</span> -->
+            <!-- 	</md-button> -->
+              </div>
+              <div class="pull-right" flex="33" ng-if="showSearchBox" style="margin-right: 20px;">
+                <!-- <div ng-if="!showSearchBox">
+                 -->  <md-input-container  flex="66" style="padding:5px;margin:0px;height:40px;float:left;position:static;">
+                 <!--    <label>&nbsp;</label> -->
+                    <input  md-placeholder="enter search" flex style="color:#666;font-size: 14px;"/>
+                  </md-input-container>
+                <button style="border: none;background-color: transparent;font-size: 14px;padding-top:12px;float:right;position:absolute;outline:none;" ng-click="toggleSearch()"  aria-label="Close" >
+                <i class="fa fa-close"></i>
+              </button>
+                  <!--   <md-icon ng-click="toggleSearch()"  aria-label="Close"   style="color:#333;height:40px;
+                    float:right;position:absolute;margin-top:10px;outline:none;">close</md-icon>
+                  -->
+            
+             <!--  <md-button class="md-icon-button md-raised" style="/*background-color:#2581ce;*/" ng-click="addTasks('add')" ng-if="!addCard">
+                 <i class="fa fa-plus"  aria-hidden="true"></i> <i class="material-icons" style="padding-top:0px; ">add</i>
+                <!- <span flex hide-sm hide-xs  style="padding-right: 2px;">Add Task</span>
+              </md-button> --> 
+              </div>
+            </div>
+          
+        </md-toolbar>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </md-content>
+
+        <p ng-click="getTrainingCourses()">
+        </p>
+        </div>
+        </div>
+</div>
