@@ -1,0 +1,6 @@
+{
+	"uploadsPathDev"  : "\\..\\HRMS_Uploads\\",
+	"taskAttachmentpPath"  : "\\task_attachment\\",
+	"mtlAttachPath" : "\\Material\\",
+	"fileType" : ["/pdf"]
+}
