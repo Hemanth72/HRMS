@@ -67,6 +67,7 @@ router.post('/lessonOrder', ctrlTraining.lessonOrder);
 /*log in to timesheet*/
 var ctrlTimeSheet = require('../controllers/timeSheet.controller');
 router.post('/logInToTimeSheet', ctrlTimeSheet.logInToTimeSheet);
+router.get('/getTimeSheet', ctrlTimeSheet.getTimeSheet);
 
 module.exports = router;
 

@@ -125,6 +125,21 @@ catch(err){
 
 
 }
-
+//get timesheet
+module.exports.getTimeSheet = function(req, res) {
+      	Timesheets.find({},function(err, timesheets){
+ 		if(err){
+ 			console.log("inside error");
+ 			res.send(err);
+ 			return err;
+ 		}
+ 		if(timesheets.length > 0){
+ 			//console.log("array result :"+JSON.stringify(timesheets));
+ 			res.send(timesheets);
+ 		}
+ 		else
+ 			res.send("No Timesheets Found.")
+ 	});
+}
 
 
