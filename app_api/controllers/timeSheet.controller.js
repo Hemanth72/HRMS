@@ -141,5 +141,20 @@ module.exports.getTimeSheet = function(req, res) {
  			res.send("No Timesheets Found.")
  	});
 }
+/*update timesheet*/
+module.exports.updateTimeSheet = function(req, res) {
+
+Timesheets.update({"_id" :mongoose.Types.ObjectId(req.body._id), "daily_tasks._id" : mongoose.Types.ObjectId(req.body.taskid)},
+{ $set : {"daily_tasks.$.tasks" : req.body.tasks,"datestr" : req.body.datestr}},function(err,updated){
+	if(err){
+		return err;
+	}
+	res.status(200).send("Updated Sucessfully");
+});
+
+
+
+
+	}
 
 
